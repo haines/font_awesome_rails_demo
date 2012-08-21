@@ -1,0 +1,7 @@
+- add_nav_item title, id
+section id=id
+  header
+    h1 = title
+  .examples id=examples.id
+    - examples.each do |example|
+      == render example

@@ -1,0 +1,15 @@
+.example id=example.id
+  == example.title
+  - if example.label
+    span.label class=example.label = example.label
+  .description == example.description
+  .output
+    h5 Example
+    == example.html
+  .source
+    .html
+      h5 HTML
+      == Pygments.highlight example.html, lexer: :html
+    .scss
+      h5 SCSS
+      == Pygments.highlight example.scss, lexer: :scss
