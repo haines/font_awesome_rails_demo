@@ -105,10 +105,10 @@ section {
   @extend .label-info;
 }
 
-pre, code {
+code {
   font: {
     family: $monospace;
-    size: $baseFontSize - 1px;
+    size: $baseFontSize;
   }
 }
 

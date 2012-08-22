@@ -6,12 +6,12 @@ module Markdown
   end
 
   def renderer
-    @renderer ||= Redcarpet::Markdown.new HTMLwithPygments, autolink: true, fenced_code_blocks: true
+    @renderer ||= Redcarpet::Markdown.new PrettyPrintedHTML, autolink: true, fenced_code_blocks: true
   end
 end
 
-class HTMLwithPygments < Redcarpet::Render::HTML
+class PrettyPrintedHTML < Redcarpet::Render::HTML
   def block_code(code, language)
-    Pygments.highlight(code, lexer: language)
+    %{<pre><code class="prettyprint lang-#{language}">#{ActiveSupport::SafeBuffer.new << code}</code></pre>}
   end
 end

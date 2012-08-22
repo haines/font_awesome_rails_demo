@@ -6,7 +6,6 @@ gem 'thin'
 
 gem 'slim'
 gem 'redcarpet'
-gem 'pygments.rb'
 
 gem 'jquery-rails'
 gem 'bourbon'

@@ -36,7 +36,11 @@ class Example
     self.html = value
   end
   def html=(value)
-    @html = unindent(value)
+    @html = value
+  end
+
+  def formatted_html
+    code_block(html, :html)
   end
 
   def scss(value=nil)
@@ -44,7 +48,11 @@ class Example
     self.scss = value
   end
   def scss=(value)
-    @scss = unindent(value)
+    @scss = value
+  end
+
+  def formatted_scss
+    code_block(scss, :scss)
   end
 
   def to_partial_path
@@ -56,5 +64,9 @@ class Example
   def unindent(value)
     indentation = value[/\A */].size
     value.gsub /^ {#{indentation}}/, ""
+  end
+
+  def code_block(code, language)
+    Markdown.render("```#{language}\n#{unindent(code)}\n```")
   end
 end

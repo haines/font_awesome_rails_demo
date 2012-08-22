@@ -1,4 +1,6 @@
 jQuery ($) ->
+  prettyPrint()
+
   activate = (element) -> element.addClass "active"
   deactivate = (element) -> element.removeClass "active"
 
