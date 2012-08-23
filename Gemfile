@@ -24,3 +24,7 @@ group :development do
   gem 'heroku'
   gem 'rb-readline'
 end
+
+group :production do
+  gem 'newrelic_rpm'
+end
