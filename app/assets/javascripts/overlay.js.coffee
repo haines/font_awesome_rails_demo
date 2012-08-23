@@ -1,5 +1,5 @@
 jQuery ($) ->
-  prettyPrint()
+  delay = (ms, f) -> setTimeout f, ms
 
   activate = (element) -> element.addClass "active"
   deactivate = (element) -> element.removeClass "active"
@@ -13,6 +13,7 @@ jQuery ($) ->
     activate overlay
 
     overlay.css "height", "#{overlay.parent().height()}px"
+    overlay.css "opacity", 1
 
     gutter = parseInt(row.css("padding-top"))
     offset = container.offset()
@@ -25,8 +26,10 @@ jQuery ($) ->
     $(".source", row).replaceWith source
 
   hide = ->
-    deactivate $("#overlay")
-    deactivate $(".active.example")
+    overlay.css "opacity", 0
+    delay 1000*parseFloat(overlay.css("transition-duration")), ->
+      deactivate $("#overlay")
+      deactivate $(".active.example")
 
   $(".example").click ->
     example = $(this)

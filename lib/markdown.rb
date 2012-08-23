@@ -1,3 +1,5 @@
+Object.send :remove_const, :Markdown
+
 module Markdown
   extend self
 
@@ -6,7 +8,7 @@ module Markdown
   end
 
   def renderer
-    @renderer ||= Redcarpet::Markdown.new PrettyPrintedHTML, autolink: true, fenced_code_blocks: true
+    @renderer ||= Redcarpet::Markdown.new PrettyPrintedHTML, autolink: true, fenced_code_blocks: true, no_intra_emphasis: true
   end
 end
 

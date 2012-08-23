@@ -15,17 +15,19 @@ html, body {
   .brand {
     color: #F7F7F7;
 
+    line-height: $baseLineHeight;
     font: {
       family: $monospace;
       size: 16px;
       weight: bold;
     }
-    line-height: $baseLineHeight;
+
     $padding: ($navbarHeight - $baseLineHeight)/2;
     padding: {
       top: $padding - 2px;
       bottom: $padding + 2px;
     }
+    margin-left: -30px;
   }
 }
 
@@ -62,14 +64,16 @@ section {
 
     &:hover {
       $border: 10px;
-      background-color: $grayLighter;
-      border: solid $border $grayLighter;
+      background-color: $white;
+      border: solid $border $white;
       margin: {
         left: $gridGutterWidth - $border;
         top: -$border;
         right: -$border;
         bottom: $baseLineHeight - $border;
       }
+      @include box-shadow(0 0 8px rgba(82, 168, 236, 0.8));
+      @include transition(box-shadow 0.1s linear);
     }
   }
 
@@ -81,6 +85,24 @@ section {
 .source {
   display: none;
 
+  @include span(6);
+
+  pre {
+    margin: 0;
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
+  }
+
+  code {
+    font-size: $baseFontSize - 1px;
+  }
+
+  &.pull-right {
+    float: right;
+    margin-right: $gridGutterWidth;
+  }
+
   .scss {
     margin-bottom: 0;
   }
@@ -88,10 +110,12 @@ section {
   .html, .scss {
     @extend .well;
     padding: 12px;
+    position: relative;
 
     h5 {
       color: $gray;
-      float: right;
+      position: absolute;
+      right: 12px;
     }
   }
 }
@@ -106,10 +130,7 @@ section {
 }
 
 code {
-  font: {
-    family: $monospace;
-    size: $baseFontSize;
-  }
+  font-family: $monospace;
 }
 
 h4 {
@@ -122,6 +143,7 @@ h4 {
 #overlay {
   display: none;
   opacity: 0;
+  @include transition(opacity 0.1s linear);
 
   @include position(absolute, 0px 0px 0 0px);
   min-height: 100%;
@@ -137,21 +159,29 @@ h4 {
   }
 
   .source {
-    @include span(6);
     display: block;
-
-    pre {
-      margin: 0;
-    }
-
-    &.pull-right {
-      float: right;
-      margin-right: $gridGutterWidth;
-    }
   }
 }
 
 #overlay.active {
   display: block;
-  opacity: 1;
+}
+
+#about {
+  margin-bottom: 60px;
+}
+
+.github {
+  @include icon(github) {
+    color: black;
+    text-decoration: none;
+    width: 1.25em;
+  }
+  @extend %icon-large;
+}
+
+#example-form-inputs form,
+#example-form-inputs .password,
+#example-navigation nav.sidebar {
+  margin-bottom: 0;
 }

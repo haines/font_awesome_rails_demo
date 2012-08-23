@@ -1,7 +1,7 @@
 examples :styling do
 
   example :content_blocks do
-    title "Content blocks"
+    title "One-off styles"
 
     description <<-MARKDOWN
       All of the mixins that add icons can optionally take a
@@ -10,11 +10,11 @@ examples :styling do
     MARKDOWN
 
     html <<-HTML
-      <span class="content-block-style">thundercats</span>
+      <span class="styled">thundercats</span>
     HTML
 
     scss <<-SCSS
-      .content-block-style {
+      .styled {
         @include icon(facebook-sign) {
           color: #3B5998;
         }
@@ -108,6 +108,57 @@ examples :styling do
 
       .icon-after {
         @include icon-after(leaf);
+      }
+    SCSS
+  end
+
+  example :icon_large do
+    title "`%icon-large`"
+    label :placeholder
+
+    description <<-MARKDOWN
+      Increases the icon size by one-third.
+    MARKDOWN
+
+    html <<-HTML
+      <span class="larger-icon">cardigan</span>
+    HTML
+
+    scss <<-SCSS
+      .larger-icon {
+        @extend %icon-large;
+        @include icon(umbrella);
+      }
+    SCSS
+  end
+
+  example :icon_list do
+    title "`%icon-list`"
+    label :placeholder
+
+    description <<-MARKDOWN
+      Bullet lists with icons.
+    MARKDOWN
+
+    html <<-HTML
+      <ul class="checklist">
+        <li class="checked">organic</li>
+        <li>beard</li>
+        <li class="checked">leggings</li>
+      </ul>
+    HTML
+
+    scss <<-SCSS
+      .checklist {
+        @extend %icon-list;
+
+        li {
+          @include icon(check-empty);
+        }
+
+        li.checked {
+          @include icon(check);
+        }
       }
     SCSS
   end

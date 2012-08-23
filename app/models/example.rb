@@ -1,4 +1,6 @@
 class Example
+  include Base
+
   def initialize(id, &block)
     self.id = id
     instance_eval &block
@@ -55,16 +57,7 @@ class Example
     code_block(scss, :scss)
   end
 
-  def to_partial_path
-    "example"
-  end
-
   protected
-
-  def unindent(value)
-    indentation = value[/\A */].size
-    value.gsub /^ {#{indentation}}/, ""
-  end
 
   def code_block(code, language)
     Markdown.render("```#{language}\n#{unindent(code)}\n```")

@@ -1,4 +1,5 @@
 class Examples
+  include Base
   include Enumerable
 
   def initialize(id, &block)
@@ -18,16 +19,20 @@ class Examples
     examples << Example.new(id, &block)
   end
 
+  def description(value=nil)
+    return @description if value.nil?
+    self.description = value
+  end
+  def description=(value)
+    @description = Markdown.render(unindent(value))
+  end
+
   def each(&block)
     examples.each &block
   end
 
   def scss
     map{|example| "##{example.id} { #{example.scss} }"}.join("\n")
-  end
-
-  def to_partial_path
-    "examples"
   end
 
   def self.examples(id, &block)
