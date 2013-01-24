@@ -13,9 +13,6 @@ html, body {
   @extend .navbar-fixed-top;
 
   .brand {
-    color: #F7F7F7;
-
-    line-height: $baseLineHeight;
     font: {
       family: $monospace;
       size: 16px;
